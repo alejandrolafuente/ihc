@@ -10,7 +10,8 @@ import { emailValidator } from './email-validator';
 export class ReservaSalaComponent implements OnInit {
 
   reservaForm!: FormGroup;
-  emailFormControl: FormControl = new FormControl('', [Validators.required, emailValidator()]);
+  emailFormControl!: FormControl;
+  // emailFormControl: FormControl = new FormControl('', [Validators.required, emailValidator()]);
 
 
   constructor(private fb: FormBuilder, private router: Router) { }
@@ -18,8 +19,7 @@ export class ReservaSalaComponent implements OnInit {
   ngOnInit(): void {
     this.reservaForm = this.fb.group({
       nomeSolicitante: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email], , emailValidator()],
-      telefone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email], emailValidator()],
       departamento: ['', [Validators.required]],
       numeroSala: ['', [Validators.required]],
       dataReserva: ['', [Validators.required]],
@@ -35,12 +35,10 @@ export class ReservaSalaComponent implements OnInit {
       necessidadeInterprete: ['', [Validators.required]],
       infoAdicional: ['', [Validators.required]]
     });
+    // Definindo emailFormControl separadamente e adicionando no formGroup
+    this.emailFormControl = new FormControl('', [Validators.required, Validators.email, emailValidator()]);
+    this.reservaForm.setControl('email', this.emailFormControl);
   }
-
-  formatEmail(email: string): string {
-    return email.toLowerCase();
-  }
-
 
   onSubmit() {
     if (this.reservaForm.valid) {

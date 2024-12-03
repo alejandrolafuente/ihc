@@ -25,6 +25,22 @@
             </div>
         </div>
 
+        <!-- <div class="mb-3">
+            <label for="email" class="form-label text-white"><span class="text-warning"> *</span> E-mail</label>
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="exemplo@email.com"
+                [formControl]="emailFormControl" required />
+            <div *ngIf="emailFormControl.errors && (emailFormControl.dirty || emailFormControl.touched)"
+                class="alert alert-danger">
+                <div *ngIf="emailFormControl.errors['required']">
+                    Digite seu email
+                </div>
+                <div *ngIf="emailFormControl.errors['invalidEmail']">
+                    Entre com um email válido (example&#64;email.com)
+                </div>
+            </div>
+        </div> -->
+        
+
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="telefone" class="form-label text-white"><span class="text-warning"> *</span>
@@ -32,12 +48,7 @@
                 <input type="text" id="telefone" class="form-control" formControlName="telefone"
                     placeholder="(00)00000-0000" mask="(00)00000-0000" />
             </div>
-            <!-- <div class="col-md-6">
-                <label for="departamento" class="form-label text-white"><span class="text-warning"> *</span>
-                    Departamento</label>
-                <input type="text" id="departamento" class="form-control" formControlName="departamento"
-                    placeholder="Departamento" />
-            </div> -->
+
             <div class="col-md-6">
                 <label for="departamento" class="form-label text-white">
                     <span class="text-warning"> *</span> Departamento
@@ -92,13 +103,6 @@
                     mask="00000" />
             </div>
 
-            <!-- <div class="col">
-                <label for="tipoEvento" class="form-label text-white"><span class="text-warning"> *</span> Tipo de
-                    Evento</label>
-                <input type="text" id="tipoEvento" class="form-control" formControlName="tipoEvento"
-                    placeholder="Digite o tipo de evento" />
-            </div>
-             -->
             <div class="col">
                 <label for="tipoEvento" class="form-label text-white">
                     <span class="text-warning"> *</span> Tipo de Evento
@@ -133,10 +137,17 @@
         </div>
 
         <div class="mb-3">
-            <label for="confSala" class="form-label text-white"><span class="text-warning"> *</span> Configuração da
-                sala (auditório, reunião, formato "U"...)</label>
-            <input type="text" id="confSala" class="form-control" formControlName="confSala"
-                placeholder="Configuração da sala" />
+            <label for="confSala" class="form-label text-white">
+                <span class="text-warning"> *</span> Configuração da sala
+            </label>
+            <select id="confSala" class="form-select" formControlName="confSala">
+                <option value="" disabled selected>Selecione a configuração da sala</option>
+                <option value="Auditório">Auditório</option>
+                <option value="Reunião">Reunião</option>
+                <option value="Formato U">Formato "U"</option>
+                <option value="Mesa Redonda">Mesa Redonda</option>
+                <option value="Outro">Outro...</option>
+            </select>
         </div>
 
         <div class="mb-3">
@@ -170,7 +181,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="infoAdicional" class="form-label text-white"><span class="text-warning"> *</span> Observações
+            <label for="infoAdicional" class="form-label text-white"> Observações
                 Adicionais</label>
             <input type="text" id="infoAdicional" class="form-control" formControlName="infoAdicional"
                 placeholder="Observações Adicionais" />
