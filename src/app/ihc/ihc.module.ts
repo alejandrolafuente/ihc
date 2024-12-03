@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CursosTadsComponent } from './cursos-tads/cursos-tads.component';
 import { ListaFormadosComponent } from './lista-formados/lista-formados.component';
@@ -24,6 +25,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     NgxMaskModule.forRoot()
   ]
 })

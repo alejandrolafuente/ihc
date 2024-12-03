@@ -1,19 +1,19 @@
 <div class="container mt-4">
     <p class="text-danger mt-2 fw-bold fs-3">FORMULÁRIO RESERVA DE SALA</p>
 
-    <form [formGroup]="reservaForm" class="p-4 tabela-vermelha" (ngSubmit)="onSubmit()">
+    <form class="p-4 tabela-vermelha" #formRegister="ngForm">
 
-        <div class="mb-3">
-            <label for="nomeSolicitante" class="form-label text-white"><span class="text-warning"> *</span> Nome do
+        <div class="mb-3 form-group">
+            <label for="nome" class="form-label text-white"><span class="text-warning"> *</span> Nome do
                 Solicitante</label>
-            <input type="text" id="nomeSolicitante" class="form-control" formControlName="nomeSolicitante"
-                placeholder="Digite seu nome completo" maxlength="60" required />
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome completo"
+                minlength="2" maxlength="60" [(ngModel)]="reserva.nome" required />
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
             <label for="email" class="form-label text-white"><span class="text-warning"> *</span> E-mail</label>
-            <input type="email" id="email" class="form-control" formControlName="email" placeholder="exemplo@email.com"
-                [formControl]="emailFormControl" required />
+            <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@email.com"
+                [formControl]="emailFormControl" [(ngModel)]="reserva.email" required />
             <div *ngIf="emailFormControl.errors && (emailFormControl.dirty || emailFormControl.touched)"
                 class="alert alert-danger">
                 <div *ngIf="emailFormControl.errors['required']">
@@ -24,36 +24,22 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="mb-3">
-            <label for="email" class="form-label text-white"><span class="text-warning"> *</span> E-mail</label>
-            <input type="email" id="email" class="form-control" formControlName="email" placeholder="exemplo@email.com"
-                [formControl]="emailFormControl" required />
-            <div *ngIf="emailFormControl.errors && (emailFormControl.dirty || emailFormControl.touched)"
-                class="alert alert-danger">
-                <div *ngIf="emailFormControl.errors['required']">
-                    Digite seu email
-                </div>
-                <div *ngIf="emailFormControl.errors['invalidEmail']">
-                    Entre com um email válido (example&#64;email.com)
-                </div>
-            </div>
-        </div> -->
-        
 
         <div class="row mb-3">
-            <div class="col-md-6">
+
+            <div class="col-md-6 form-group">
                 <label for="telefone" class="form-label text-white"><span class="text-warning"> *</span>
                     Telefone</label>
-                <input type="text" id="telefone" class="form-control" formControlName="telefone"
-                    placeholder="(00)00000-0000" mask="(00)00000-0000" />
+                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="(00)00000-0000"
+                    mask="(00)00000-0000" [(ngModel)]="reserva.telefone" required />
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 form-group">
                 <label for="departamento" class="form-label text-white">
                     <span class="text-warning"> *</span> Departamento
                 </label>
-                <select id="departamento" class="form-select" formControlName="departamento">
+                <select id="departamento" class="form-select" [(ngModel)]="reserva.departamento" name="departamento"
+                    required>
                     <option value="" disabled selected>Selecione um departamento</option>
                     <option value="DINF">DINF - Departamento de Informática</option>
                     <option value="BIOINFO">BIOINFO - Departamento de Bioinformática</option>
@@ -62,52 +48,55 @@
         </div>
 
         <div class="mb-3 row">
-            <div class="col">
-                <label for="numeroSala" class="form-label text-white"><span class="text-warning"> *</span> Número da
+
+            <div class="col form-group">
+                <label for="numero" class="form-label text-white"><span class="text-warning"> *</span> Número da
                     Sala</label>
-                <input type="text" id="numeroSala" class="form-control" formControlName="numeroSala"
-                    placeholder="Digite o número da sala" />
+                <input type="text" id="numero" class="form-control" placeholder="Digite o número da sala"
+                    [(ngModel)]="reserva.numero" required />
             </div>
-            <div class="col">
+
+            <div class="col form-group">
                 <label for="dataReserva" class="form-label text-white"><span class="text-warning"> *</span> Data da
                     Reserva</label>
-                <input type="date" id="dataReserva" class="form-control" formControlName="dataReserva" />
+                <input type="date" id="dataReserva" class="form-control" [(ngModel)]="reserva.data" required />
             </div>
+
         </div>
 
         <div class="mb-3 row">
 
-            <div class="col">
+            <div class="col form-group">
                 <label for="horarioUnico" class="form-label text-white"><span class="text-warning"> *</span> Horário
                     Início</label>
-                <input type="text" id="horarioUnico" class="form-control" formControlName="horarioUnico" mask="00:00"
-                    placeholder="00:00" />
+                <input type="text" id="horarioUnico" class="form-control" mask="00:00" placeholder="00:00"
+                    [(ngModel)]="reserva.inicio" required />
             </div>
 
-            <div class="col">
+            <div class="col form-group">
                 <label for="horarioTermino" class="form-label text-white"><span class="text-warning"> *</span> Horário
                     Término</label>
-                <input type="text" id="horarioTermino" class="form-control" formControlName="horarioTermino"
-                    mask="00:00" placeholder="00:00" />
+                <input type="text" id="horarioTermino" class="form-control" mask="00:00" placeholder="00:00"
+                    [(ngModel)]="reserva.fim" required />
             </div>
 
         </div>
 
         <div class="mb-3 row">
 
-            <div class="col">
+            <div class="col form-group">
                 <label for="quantidadeParticipantes" class="form-label text-white"><span class="text-warning"> *</span>
                     Quantidade de Participantes (apenas números)</label>
-                <input type="number" id="quantidadeParticipantes" class="form-control"
-                    formControlName="quantidadeParticipantes" placeholder="Digite a quantidade de participantes"
-                    mask="00000" />
+                <input type="text" id="quantidadeParticipantes" class="form-control"
+                    placeholder="Digite a quantidade de participantes" mask="0000" [(ngModel)]="reserva.participantes"
+                    required />
             </div>
 
-            <div class="col">
+            <div class="col form-group">
                 <label for="tipoEvento" class="form-label text-white">
                     <span class="text-warning"> *</span> Tipo de Evento
                 </label>
-                <select id="tipoEvento" class="form-select" formControlName="tipoEvento">
+                <select id="tipoEvento" class="form-select" [(ngModel)]="reserva.evento" name="tipoEvento" required>
                     <option value="" disabled selected>Selecione o tipo de evento</option>
                     <option value="Palestra">Palestra</option>
                     <option value="Aula">Aula</option>
@@ -117,26 +106,23 @@
             </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
             <label class="form-label text-white"><span class="text-warning"> *</span> Equipamentos Necessários</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipamentoProjetor"
-                    formControlName="equipamentoProjetor" value="Projetor" />
+                <input class="form-check-input" type="checkbox" id="equipamentoProjetor" value="Projetor" />
                 <label class="form-check-label text-white" for="equipamentoProjetor">Projetor</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipamentoControleAr"
-                    formControlName="equipamentoControleAr" value="Controle de Ar" />
+                <input class="form-check-input" type="checkbox" id="equipamentoControleAr" value="Controle de Ar" />
                 <label class="form-check-label text-white" for="equipamentoControleAr">Controle de Ar</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipamentoMicrofone"
-                    formControlName="equipamentoMicrofone" value="Microfone" />
+                <input class="form-check-input" type="checkbox" id="equipamentoMicrofone" value="Microfone" />
                 <label class="form-check-label text-white" for="equipamentoMicrofone">Microfone</label>
             </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3" class="form-group">
             <label for="confSala" class="form-label text-white">
                 <span class="text-warning"> *</span> Configuração da sala
             </label>
@@ -148,9 +134,9 @@
                 <option value="Mesa Redonda">Mesa Redonda</option>
                 <option value="Outro">Outro...</option>
             </select>
-        </div>
+        </div><br>
 
-        <div class="mb-3">
+        <div class="mb-3" class="form-group">
             <label class="form-label text-white"><span class="text-warning"> *</span> Necessidade de Suporte
                 Técnico</label>
             <div class="form-check">
@@ -163,9 +149,9 @@
                     formControlName="necessidadeSuporte" value="Não" />
                 <label class="form-check-label text-white" for="suporteNao">Não</label>
             </div>
-        </div>
+        </div><br>
 
-        <div class="mb-3">
+        <div class="mb-3" class="form-group">
             <label class="form-label text-white"><span class="text-warning"> *</span> Necessita intérprete de
                 libras</label>
             <div class="form-check">
@@ -178,9 +164,9 @@
                     formControlName="necessidadeInterprete" value="Não" />
                 <label class="form-check-label text-white" for="interpreteNao">Não</label>
             </div>
-        </div>
+        </div><br>
 
-        <div class="mb-3">
+        <div class="mb-3" class="form-group">
             <label for="infoAdicional" class="form-label text-white"> Observações
                 Adicionais</label>
             <input type="text" id="infoAdicional" class="form-control" formControlName="infoAdicional"
