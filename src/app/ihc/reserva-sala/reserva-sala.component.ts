@@ -47,13 +47,10 @@ export class ReservaSalaComponent implements OnInit {
   }
 
   register(): void {
-    if (this.formRegister.form.valid) {
+    
       // Armazenando dados preenchidos no localStorage
       localStorage.setItem('reservaData', JSON.stringify(this.reserva));
-      console.log(this.reserva);
       this.router.navigate(['/bioinfo.ufpr.br/confirmar']);  // Navega para a tela de confirmação
-    } else {
-      console.log("Formulário inválido");
-    }
+    
   }
 }

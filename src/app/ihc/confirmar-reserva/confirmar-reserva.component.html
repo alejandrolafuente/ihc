@@ -1,18 +1,22 @@
 <div class="container mt-4">
-    <p class="text-center text-warning fw-bold fs-3">Confirmação de Reserva</p>
+    <p class="text-center text-warning fw-bold fs-3">Confirmação de Reserva de Sala</p>
 
-    <div *ngIf="reservaData">
-        <p><strong>Nome do Solicitante:</strong> {{ reservaData.nomeSolicitante }}</p>
-        <p><strong>E-mail:</strong> {{ reservaData.email }}</p>
-        <p><strong>Telefone:</strong> {{ reservaData.telefone }}</p>
-        <p><strong>Departamento:</strong> {{ reservaData.departamento }}</p>
-        <p><strong>Número da Sala:</strong> {{ reservaData.numeroSala }}</p>
-        <p><strong>Data da Reserva:</strong> {{ reservaData.dataReserva }}</p>
-        <p><strong>Horário Início:</strong> {{ reservaData.horarioUnico }}</p>
-        <p><strong>Horário Término:</strong> {{ reservaData.horarioTermino }}</p>
-        <p><strong>Quantidade de Participantes:</strong> {{ reservaData.quantidadeParticipantes }}</p>
-        <p><strong>Tipo de Evento:</strong> {{ reservaData.tipoEvento }}</p>
-        <!-- Adicione outros campos conforme necessário -->
+    <div *ngIf="reserva">
+        <p><strong>Nome do Solicitante:</strong> {{ reserva.nome }}</p>
+        <p><strong>E-mail:</strong> {{ reserva.email }}</p>
+        <p><strong>Telefone:</strong> {{ reserva.telefone }}</p>
+        <p><strong>Departamento:</strong> {{ reserva.departamento }}</p>
+        <p><strong>Número da Sala:</strong> {{ reserva.numero }}</p>
+        <p><strong>Data da Reserva:</strong> {{ reserva.data }}</p>
+        <p><strong>Horário Início:</strong> {{ reserva.inicio }}</p>
+        <p><strong>Horário Término:</strong> {{ reserva.fim }}</p>
+        <p><strong>Quantidade de Participantes:</strong> {{ reserva.participantes }}</p>
+        <p><strong>Tipo de Evento:</strong> {{ reserva.evento }}</p>
+        <p><strong>Equipamentos:</strong> {{ reserva.equipamentos }}</p>
+        <p><strong>Configuração da Sala:</strong> {{ reserva.configuracao }}</p>
+        <p><strong>Suporte técnico:</strong> {{ reserva.suporte }}</p>
+        <p><strong>Libras:</strong> {{ reserva.libras }}</p>
+        <p><strong>Observações Adicionais:</strong> {{ reserva.info }}</p>
 
         <div class="d-flex justify-content-center mt-4">
             <button class="btn btn-success" (click)="confirmarReserva()">Confirmar</button>

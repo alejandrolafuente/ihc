@@ -7,7 +7,12 @@
             <label for="nome" class="form-label text-white"><span class="text-warning"> *</span> Nome do
                 Solicitante</label>
             <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome completo"
-                minlength="2" maxlength="60" [(ngModel)]="reserva.nome" required />
+                #nome="ngModel" minlength="1" maxlength="60" [(ngModel)]="reserva.nome" required />
+            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+                <div [hidden]="!nome.errors?.['required']">
+                    Digite Seu Nome
+                </div>
+            </div>
         </div>
 
         <div class="mb-3 form-group">
@@ -31,19 +36,25 @@
                 <label for="telefone" class="form-label text-white"><span class="text-warning"> *</span>
                     Telefone</label>
                 <input type="text" id="telefone" name="telefone" class="form-control" placeholder="(00)00000-0000"
-                    mask="(00)00000-0000" [(ngModel)]="reserva.telefone" required />
+                    #telefone="ngModel" mask="(00)00000-0000" [(ngModel)]="reserva.telefone" required />
+                <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="alert alert-danger">
+                    <div [hidden]="!telefone.errors?.['required']">
+                        Digite Seu Telefone
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-6 form-group">
                 <label for="departamento" class="form-label text-white">
                     <span class="text-warning"> *</span> Departamento
                 </label>
-                <select id="departamento" class="form-select" [(ngModel)]="reserva.departamento" name="departamento"
-                    required>
+                <select id="departamento" class="form-select" #departamento="ngModel" [(ngModel)]="reserva.departamento"
+                    name="departamento" required>
                     <option value="" disabled selected>Selecione um departamento</option>
                     <option value="DINF">DINF - Departamento de Informática</option>
                     <option value="BIOINFO">BIOINFO - Departamento de Bioinformática</option>
                 </select>
+
             </div>
         </div>
 
@@ -51,15 +62,27 @@
 
             <div class="col form-group">
                 <label for="numero" class="form-label text-white"><span class="text-warning"> *</span> Número da
-                    Sala</label>
-                <input type="text" id="numero" class="form-control" placeholder="Digite o número da sala"
-                    [(ngModel)]="reserva.numero" required />
+                    Sala (apenas números)</label>
+                <input type="text" id="numero" name="numero" class="form-control" placeholder="Digite o número da sala"
+                    #numero="ngModel" mask="000" [(ngModel)]="reserva.numero" required />
+                <div *ngIf="numero.errors && (numero.dirty || numero.touched)" class="alert alert-danger">
+                    <div [hidden]="!numero.errors?.['required']">
+                        Digite o número da sala
+                    </div>
+                </div>
             </div>
 
             <div class="col form-group">
                 <label for="dataReserva" class="form-label text-white"><span class="text-warning"> *</span> Data da
                     Reserva</label>
-                <input type="date" id="dataReserva" class="form-control" [(ngModel)]="reserva.data" required />
+                <input type="date" id="dataReserva" name="dataReserva" class="form-control" [(ngModel)]="reserva.data"
+                    #dataReserva="ngModel" required />
+                <div *ngIf="dataReserva.errors && (dataReserva.dirty || dataReserva.touched)"
+                    class="alert alert-danger">
+                    <div [hidden]="!dataReserva.errors?.['required']">
+                        Selecione a data da reserva
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -67,17 +90,29 @@
         <div class="mb-3 row">
 
             <div class="col form-group">
-                <label for="horarioUnico" class="form-label text-white"><span class="text-warning"> *</span> Horário
+                <label for="horarioInicio" class="form-label text-white"><span class="text-warning"> *</span> Horário
                     Início</label>
-                <input type="text" id="horarioUnico" class="form-control" mask="00:00" placeholder="00:00"
-                    [(ngModel)]="reserva.inicio" required />
+                <input type="text" id="horarioInicio" name="horarioInicio" class="form-control" mask="00:00"
+                    #horarioInicio="ngModel" placeholder="00:00" [(ngModel)]="reserva.inicio" required />
+                <div *ngIf="horarioInicio.errors && (horarioInicio.dirty || horarioInicio.touched)"
+                    class="alert alert-danger">
+                    <div [hidden]="!horarioInicio.errors?.['required']">
+                        Digite o horário de início
+                    </div>
+                </div>
             </div>
 
             <div class="col form-group">
                 <label for="horarioTermino" class="form-label text-white"><span class="text-warning"> *</span> Horário
                     Término</label>
-                <input type="text" id="horarioTermino" class="form-control" mask="00:00" placeholder="00:00"
-                    [(ngModel)]="reserva.fim" required />
+                <input type="text" id="horarioTermino" name="horarioTermino" class="form-control" mask="00:00"
+                    #horarioTermino="ngModel" placeholder="00:00" [(ngModel)]="reserva.fim" required />
+                <div *ngIf="horarioTermino.errors && (horarioTermino.dirty || horarioTermino.touched)"
+                    class="alert alert-danger">
+                    <div [hidden]="!horarioTermino.errors?.['required']">
+                        Digite o horário de término
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -87,9 +122,15 @@
             <div class="col form-group">
                 <label for="quantidadeParticipantes" class="form-label text-white"><span class="text-warning"> *</span>
                     Quantidade de Participantes (apenas números)</label>
-                <input type="text" id="quantidadeParticipantes" class="form-control"
-                    placeholder="Digite a quantidade de participantes" mask="0000" [(ngModel)]="reserva.participantes"
-                    required />
+                <input type="text" id="quantidadeParticipantes" name="quantidadeParticipantes" class="form-control"
+                    #quantidadeParticipantes="ngModel" placeholder="Número de participantes" mask="0000"
+                    [(ngModel)]="reserva.participantes" required />
+                <div *ngIf="quantidadeParticipantes.errors && (quantidadeParticipantes.dirty || quantidadeParticipantes.touched)"
+                    class="alert alert-danger">
+                    <div [hidden]="!quantidadeParticipantes.errors?.['required']">
+                        Digite a quantidade de pessoas
+                    </div>
+                </div>
             </div>
 
             <div class="col form-group">
@@ -183,13 +224,13 @@
         <div class="mb-3 form-group">
             <label for="infoAdicional" class="form-label text-white"> <span class="text-warning"> * </span>Observações
                 Adicionais</label>
-            <input type="text" id="infoAdicional" class="form-control" placeholder="Observações Adicionais"
-                [(ngModel)]="reserva.info" required />
+            <input type="text" id="infoAdicional" name="infoAdicional" class="form-control" #infoAdicional="ngModel"
+                placeholder="Observações Adicionais" [(ngModel)]="reserva.info" required />
         </div>
 
         <div class="d-flex justify-content-end mt-4">
             <button type="submit" class="btn btn-warning fw-bold" (click)="register()"
-                [disabled]="!formRegister.form.valid">Enviar</button>
+                >Enviar</button>
         </div>
     </form><br>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Reserva } from '../../models/reserva.model';
 
 @Component({
   selector: 'app-confirmar-reserva',
@@ -8,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ConfirmarReservaComponent implements OnInit {
 
-  reservaData: any;
+  reserva!: Reserva;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     // Recuperando os dados armazenados do localStorage
-    this.reservaData = JSON.parse(localStorage.getItem('reservaData')!);
+    this.reserva = JSON.parse(localStorage.getItem('reservaData')!);
   }
 
   confirmarReserva() {
