@@ -10,10 +10,10 @@ export class Reserva {
         public fim?: string,
         public participantes?: string,
         public evento?: string,
-        public equipamentos?: string[],
+        public equipamentos: string[] = [],
         public configuracao?: string,
         public suporte?: string,
         public libras?: string,
-        public infoAdicional?: string,
+        public info?: string,
     ) { }
 }

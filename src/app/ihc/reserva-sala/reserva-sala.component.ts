@@ -25,13 +25,32 @@ export class ReservaSalaComponent implements OnInit {
 
   ngOnInit(): void {
     this.reserva = new Reserva();
+    this.reserva.equipamentos = [];
   }
 
+  onEquipamentoChange(event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const value = checkbox.value;
+
+    // Garante que 'equipamentos' seja inicializado como um array vazio
+    if (!this.reserva.equipamentos) {
+      this.reserva.equipamentos = [];
+    }
+
+    if (checkbox.checked) {
+      // Adiciona o equipamento se estiver selecionado
+      this.reserva.equipamentos.push(value);
+    } else {
+      // Remove o equipamento se não estiver selecionado
+      this.reserva.equipamentos = this.reserva.equipamentos.filter(item => item !== value);
+    }
+  }
 
   register(): void {
     if (this.formRegister.form.valid) {
       // Armazenando dados preenchidos no localStorage
       localStorage.setItem('reservaData', JSON.stringify(this.reserva));
+      console.log(this.reserva);
       this.router.navigate(['/bioinfo.ufpr.br/confirmar']);  // Navega para a tela de confirmação
     } else {
       console.log("Formulário inválido");

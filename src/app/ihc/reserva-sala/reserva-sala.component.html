@@ -107,26 +107,36 @@
         </div>
 
         <div class="mb-3 form-group">
-            <label class="form-label text-white"><span class="text-warning"> *</span> Equipamentos Necessários</label>
+            <label class="form-label text-white">
+                <span class="text-warning"> *</span> Equipamentos Necessários
+            </label>
+
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipamentoProjetor" value="Projetor" />
+                <input class="form-check-input" type="checkbox" id="equipamentoProjetor" value="Projetor"
+                    (change)="onEquipamentoChange($event)" [checked]="reserva.equipamentos.includes('Projetor')" />
                 <label class="form-check-label text-white" for="equipamentoProjetor">Projetor</label>
             </div>
+
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipamentoControleAr" value="Controle de Ar" />
+                <input class="form-check-input" type="checkbox" id="equipamentoControleAr" value="Controle de Ar"
+                    (change)="onEquipamentoChange($event)"
+                    [checked]="reserva.equipamentos.includes('Controle de Ar')" />
                 <label class="form-check-label text-white" for="equipamentoControleAr">Controle de Ar</label>
             </div>
+
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="equipamentoMicrofone" value="Microfone" />
+                <input class="form-check-input" type="checkbox" id="equipamentoMicrofone" value="Microfone"
+                    (change)="onEquipamentoChange($event)" [checked]="reserva.equipamentos.includes('Microfone')" />
                 <label class="form-check-label text-white" for="equipamentoMicrofone">Microfone</label>
             </div>
         </div>
 
-        <div class="mb-3" class="form-group">
-            <label for="confSala" class="form-label text-white">
+
+        <div class="mb-3 form-group">
+            <label for="conf" class="form-label text-white">
                 <span class="text-warning"> *</span> Configuração da sala
             </label>
-            <select id="confSala" class="form-select" formControlName="confSala">
+            <select id="conf" class="form-select" [(ngModel)]="reserva.configuracao" name="confi" required>
                 <option value="" disabled selected>Selecione a configuração da sala</option>
                 <option value="Auditório">Auditório</option>
                 <option value="Reunião">Reunião</option>
@@ -136,45 +146,50 @@
             </select>
         </div><br>
 
-        <div class="mb-3" class="form-group">
-            <label class="form-label text-white"><span class="text-warning"> *</span> Necessidade de Suporte
-                Técnico</label>
+        <div class="mb-3 form-group">
+            <label class="form-label text-white">
+                <span class="text-warning"> *</span> Necessidade de Suporte Técnico
+            </label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" id="suporteSim" name="necessidadeSuporte"
-                    formControlName="necessidadeSuporte" value="Sim" />
+                <input class="form-check-input" type="radio" id="suporteSim" name="necessidadeSuporte" value="Sim"
+                    [(ngModel)]="reserva.suporte" />
                 <label class="form-check-label text-white" for="suporteSim">Sim</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" id="suporteNao" name="necessidadeSuporte"
-                    formControlName="necessidadeSuporte" value="Não" />
+                <input class="form-check-input" type="radio" id="suporteNao" name="necessidadeSuporte" value="Não"
+                    [(ngModel)]="reserva.suporte" />
                 <label class="form-check-label text-white" for="suporteNao">Não</label>
             </div>
-        </div><br>
+        </div>
+        <br>
 
-        <div class="mb-3" class="form-group">
-            <label class="form-label text-white"><span class="text-warning"> *</span> Necessita intérprete de
-                libras</label>
+        <div class="mb-3 form-group">
+            <label class="form-label text-white">
+                <span class="text-warning"> *</span> Necessita intérprete de libras
+            </label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" id="interpreteSim" name="necessidadeInterprete"
-                    formControlName="necessidadeInterprete" value="Sim" />
+                <input class="form-check-input" type="radio" id="interpreteSim" name="necessidadeInterprete" value="Sim"
+                    [(ngModel)]="reserva.libras" />
                 <label class="form-check-label text-white" for="interpreteSim">Sim</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" id="interpreteNao" name="necessidadeInterprete"
-                    formControlName="necessidadeInterprete" value="Não" />
+                <input class="form-check-input" type="radio" id="interpreteNao" name="necessidadeInterprete" value="Não"
+                    [(ngModel)]="reserva.libras" />
                 <label class="form-check-label text-white" for="interpreteNao">Não</label>
             </div>
-        </div><br>
+        </div>
 
-        <div class="mb-3" class="form-group">
-            <label for="infoAdicional" class="form-label text-white"> Observações
+
+        <div class="mb-3 form-group">
+            <label for="infoAdicional" class="form-label text-white"> <span class="text-warning"> * </span>Observações
                 Adicionais</label>
-            <input type="text" id="infoAdicional" class="form-control" formControlName="infoAdicional"
-                placeholder="Observações Adicionais" />
+            <input type="text" id="infoAdicional" class="form-control" placeholder="Observações Adicionais"
+                [(ngModel)]="reserva.info" required />
         </div>
 
         <div class="d-flex justify-content-end mt-4">
-            <button type="submit" class="btn btn-warning fw-bold">Enviar</button>
+            <button type="submit" class="btn btn-warning fw-bold" (click)="register()"
+                [disabled]="!formRegister.form.valid">Enviar</button>
         </div>
     </form><br>
 </div>
