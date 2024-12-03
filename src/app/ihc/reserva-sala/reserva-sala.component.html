@@ -1,0 +1,183 @@
+<div class="container mt-4">
+    <p class="text-danger mt-2 fw-bold fs-3">FORMULÁRIO RESERVA DE SALA</p>
+
+    <form [formGroup]="reservaForm" class="p-4 tabela-vermelha" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+            <label for="nomeSolicitante" class="form-label text-white"><span class="text-warning"> *</span> Nome do
+                Solicitante</label>
+            <input type="text" id="nomeSolicitante" class="form-control" formControlName="nomeSolicitante"
+                placeholder="Digite seu nome completo" maxlength="60" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label text-white"><span class="text-warning"> *</span> E-mail</label>
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="exemplo@email.com"
+                [formControl]="emailFormControl" required />
+            <div *ngIf="emailFormControl.errors && (emailFormControl.dirty || emailFormControl.touched)"
+                class="alert alert-danger">
+                <div *ngIf="emailFormControl.errors['required']">
+                    Digite seu email
+                </div>
+                <div *ngIf="emailFormControl.errors['invalidEmail']">
+                    Entre com um email válido (example&#64;email.com)
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="telefone" class="form-label text-white"><span class="text-warning"> *</span>
+                    Telefone</label>
+                <input type="text" id="telefone" class="form-control" formControlName="telefone"
+                    placeholder="(00)00000-0000" mask="(00)00000-0000" />
+            </div>
+            <!-- <div class="col-md-6">
+                <label for="departamento" class="form-label text-white"><span class="text-warning"> *</span>
+                    Departamento</label>
+                <input type="text" id="departamento" class="form-control" formControlName="departamento"
+                    placeholder="Departamento" />
+            </div> -->
+            <div class="col-md-6">
+                <label for="departamento" class="form-label text-white">
+                    <span class="text-warning"> *</span> Departamento
+                </label>
+                <select id="departamento" class="form-select" formControlName="departamento">
+                    <option value="" disabled selected>Selecione um departamento</option>
+                    <option value="DINF">DINF - Departamento de Informática</option>
+                    <option value="BIOINFO">BIOINFO - Departamento de Bioinformática</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col">
+                <label for="numeroSala" class="form-label text-white"><span class="text-warning"> *</span> Número da
+                    Sala</label>
+                <input type="text" id="numeroSala" class="form-control" formControlName="numeroSala"
+                    placeholder="Digite o número da sala" />
+            </div>
+            <div class="col">
+                <label for="dataReserva" class="form-label text-white"><span class="text-warning"> *</span> Data da
+                    Reserva</label>
+                <input type="date" id="dataReserva" class="form-control" formControlName="dataReserva" />
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+
+            <div class="col">
+                <label for="horarioUnico" class="form-label text-white"><span class="text-warning"> *</span> Horário
+                    Início</label>
+                <input type="text" id="horarioUnico" class="form-control" formControlName="horarioUnico" mask="00:00"
+                    placeholder="00:00" />
+            </div>
+
+            <div class="col">
+                <label for="horarioTermino" class="form-label text-white"><span class="text-warning"> *</span> Horário
+                    Término</label>
+                <input type="text" id="horarioTermino" class="form-control" formControlName="horarioTermino"
+                    mask="00:00" placeholder="00:00" />
+            </div>
+
+        </div>
+
+        <div class="mb-3 row">
+
+            <div class="col">
+                <label for="quantidadeParticipantes" class="form-label text-white"><span class="text-warning"> *</span>
+                    Quantidade de Participantes (apenas números)</label>
+                <input type="number" id="quantidadeParticipantes" class="form-control"
+                    formControlName="quantidadeParticipantes" placeholder="Digite a quantidade de participantes"
+                    mask="00000" />
+            </div>
+
+            <!-- <div class="col">
+                <label for="tipoEvento" class="form-label text-white"><span class="text-warning"> *</span> Tipo de
+                    Evento</label>
+                <input type="text" id="tipoEvento" class="form-control" formControlName="tipoEvento"
+                    placeholder="Digite o tipo de evento" />
+            </div>
+             -->
+            <div class="col">
+                <label for="tipoEvento" class="form-label text-white">
+                    <span class="text-warning"> *</span> Tipo de Evento
+                </label>
+                <select id="tipoEvento" class="form-select" formControlName="tipoEvento">
+                    <option value="" disabled selected>Selecione o tipo de evento</option>
+                    <option value="Palestra">Palestra</option>
+                    <option value="Aula">Aula</option>
+                    <option value="Reunião">Reunião</option>
+                    <option value="Confraternização">Confraternização</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white"><span class="text-warning"> *</span> Equipamentos Necessários</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="equipamentoProjetor"
+                    formControlName="equipamentoProjetor" value="Projetor" />
+                <label class="form-check-label text-white" for="equipamentoProjetor">Projetor</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="equipamentoControleAr"
+                    formControlName="equipamentoControleAr" value="Controle de Ar" />
+                <label class="form-check-label text-white" for="equipamentoControleAr">Controle de Ar</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="equipamentoMicrofone"
+                    formControlName="equipamentoMicrofone" value="Microfone" />
+                <label class="form-check-label text-white" for="equipamentoMicrofone">Microfone</label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="confSala" class="form-label text-white"><span class="text-warning"> *</span> Configuração da
+                sala (auditório, reunião, formato "U"...)</label>
+            <input type="text" id="confSala" class="form-control" formControlName="confSala"
+                placeholder="Configuração da sala" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white"><span class="text-warning"> *</span> Necessidade de Suporte
+                Técnico</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="suporteSim" name="necessidadeSuporte"
+                    formControlName="necessidadeSuporte" value="Sim" />
+                <label class="form-check-label text-white" for="suporteSim">Sim</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="suporteNao" name="necessidadeSuporte"
+                    formControlName="necessidadeSuporte" value="Não" />
+                <label class="form-check-label text-white" for="suporteNao">Não</label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white"><span class="text-warning"> *</span> Necessita intérprete de
+                libras</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="interpreteSim" name="necessidadeInterprete"
+                    formControlName="necessidadeInterprete" value="Sim" />
+                <label class="form-check-label text-white" for="interpreteSim">Sim</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="interpreteNao" name="necessidadeInterprete"
+                    formControlName="necessidadeInterprete" value="Não" />
+                <label class="form-check-label text-white" for="interpreteNao">Não</label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="infoAdicional" class="form-label text-white"><span class="text-warning"> *</span> Observações
+                Adicionais</label>
+            <input type="text" id="infoAdicional" class="form-control" formControlName="infoAdicional"
+                placeholder="Observações Adicionais" />
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <button type="submit" class="btn btn-warning fw-bold">Enviar</button>
+        </div>
+    </form><br>
+</div>

@@ -1,0 +1,10 @@
+.curso-imagem {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.curso-imagem:hover {
+    transform: scale(1.05);
+}

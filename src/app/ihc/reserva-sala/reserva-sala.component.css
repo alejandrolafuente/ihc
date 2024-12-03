@@ -1,0 +1,15 @@
+.tabela-vermelha {
+    background-color: rgb(212, 54, 54);
+    /* Fundo vermelho */
+    color: white;
+    /* Texto branco */
+    border-radius: 8px;
+    /* Borda arredondada */
+    padding: 20px;
+    /* Espaçamento interno */
+}
+
+.tabela-vermelha label {
+    color: white;
+    /* Texto das labels em branco */
+}

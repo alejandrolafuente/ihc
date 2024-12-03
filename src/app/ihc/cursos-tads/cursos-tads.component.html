@@ -1,0 +1,23 @@
+<div class="container my-5 text-center">
+    <!-- Título -->
+    <h2 class="mb-4">Cursos Superiores de Tecnologia</h2><br>
+  
+    <!-- Grid de imagens -->
+    <div class="row row-cols-2 row-cols-md-2 g-4">
+      <div class="col" *ngFor="let curso of cursos">
+        <a href="{{ curso.link }}" target="_blank" class="text-decoration-none">
+          <div class="card border-0">
+            <img
+              src="{{ curso.imagem }}"
+              class="card-img-top curso-imagem"
+              alt="{{ curso.nome }}"
+            />
+            <div class="card-body">
+              <p class="card-text">{{ curso.nome }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  

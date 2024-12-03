@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <p class="text-center text-warning fw-bold fs-3">Confirmação de Reserva</p>
+
+    <div *ngIf="reservaData">
+        <p><strong>Nome do Solicitante:</strong> {{ reservaData.nomeSolicitante }}</p>
+        <p><strong>E-mail:</strong> {{ reservaData.email }}</p>
+        <p><strong>Telefone:</strong> {{ reservaData.telefone }}</p>
+        <p><strong>Departamento:</strong> {{ reservaData.departamento }}</p>
+        <p><strong>Número da Sala:</strong> {{ reservaData.numeroSala }}</p>
+        <p><strong>Data da Reserva:</strong> {{ reservaData.dataReserva }}</p>
+        <p><strong>Horário Início:</strong> {{ reservaData.horarioUnico }}</p>
+        <p><strong>Horário Término:</strong> {{ reservaData.horarioTermino }}</p>
+        <p><strong>Quantidade de Participantes:</strong> {{ reservaData.quantidadeParticipantes }}</p>
+        <p><strong>Tipo de Evento:</strong> {{ reservaData.tipoEvento }}</p>
+        <!-- Adicione outros campos conforme necessário -->
+
+        <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-success" (click)="confirmarReserva()">Confirmar</button>
+        </div>
+    </div><br>
+</div>
